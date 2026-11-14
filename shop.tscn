@@ -231,7 +231,7 @@ horizontal_alignment = 1
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=432938541]
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(4, 2)
-repeat_times = 16
+repeat_times = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1349886909]
 texture = SubResource("NoiseTexture2D_fgaav")
