@@ -27,7 +27,7 @@ script = ExtResource("1_ouk20")
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=530849081]
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(32, 2)
-repeat_times = 8
+repeat_times = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1103581714]
 texture = SubResource("NoiseTexture2D_ouk20")
@@ -59,7 +59,7 @@ offset_right = 57.5
 offset_bottom = 40.0
 grow_horizontal = 2
 bbcode_enabled = true
-text = "[wave amp=4][font=\"res://GrapeSoda.ttf\"][font_size=64]Target Game"
+text = "[wave amp=4][font=\"res://GrapeSoda.ttf\"][font_size=64]Target Game 67"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=652693864]

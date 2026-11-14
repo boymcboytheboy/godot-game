@@ -31,7 +31,7 @@ z_index = 1
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1669170910]
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(16, 8)
-repeat_times = 8
+repeat_times = 16
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1543872355]
 texture = SubResource("NoiseTexture2D_ig7tw")
