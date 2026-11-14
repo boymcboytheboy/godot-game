@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://dg3ukcvedintn"]
+
+[ext_resource type="Script" uid="uid://c1esq444fvfd7" path="res://target.gd" id="1_e1yvt"]
+[ext_resource type="Texture2D" uid="uid://ctdc23qerx71d" path="res://target.png" id="1_t2jmu"]
+[ext_resource type="Texture2D" uid="uid://swpnim1o1swy" path="res://target_shard.png" id="3_5ebp1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8d2pw"]
+
+[sub_resource type="Curve" id="Curve_uqips"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.53896105, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ebp1"]
+curve = SubResource("Curve_uqips")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufrq1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(24, 24, 24)
+angle_min = -89.99999
+angle_max = 90.000015
+direction = Vector3(0, -5, 0)
+spread = 90.0
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+angular_velocity_min = -90.000015
+angular_velocity_max = 89.999985
+gravity = Vector3(0, 500, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+scale_min = 8.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_5ebp1")
+
+[sub_resource type="Gradient" id="Gradient_5ebp1"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ebp1"]
+gradient = SubResource("Gradient_5ebp1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[sub_resource type="Curve" id="Curve_ufrq1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6168831, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ufrq1"]
+curve = SubResource("Curve_ufrq1")
+
+[sub_resource type="Curve" id="Curve_5ebp1"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uqips"]
+curve = SubResource("Curve_5ebp1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ebp1"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_uqips")
+alpha_curve = SubResource("CurveTexture_ufrq1")
+
+[node name="Node2D" type="Node2D" unique_id=328048734]
+script = ExtResource("1_e1yvt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754376117]
+texture_filter = 1
+scale = Vector2(8, 8)
+texture = ExtResource("1_t2jmu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=439956160]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1657462941]
+scale = Vector2(2.4, 2.4)
+shape = SubResource("RectangleShape2D_8d2pw")
+
+[node name="particles" type="Node2D" parent="." unique_id=1078093691]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="particles" unique_id=47172741]
+texture_filter = 1
+emitting = false
+amount = 4
+texture = ExtResource("3_5ebp1")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ufrq1")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="particles" unique_id=743950416]
+emitting = false
+amount = 1
+texture = SubResource("GradientTexture2D_5ebp1")
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_5ebp1")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

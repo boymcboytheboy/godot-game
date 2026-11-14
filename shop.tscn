@@ -1,0 +1,239 @@
+[gd_scene format=3 uid="uid://bashyrumjvlbx"]
+
+[ext_resource type="Script" uid="uid://cu7y0cj4r70sq" path="res://shop.gd" id="1_blqjs"]
+[ext_resource type="Script" uid="uid://dli3icft1bb5" path="res://fade.gd" id="1_viryw"]
+[ext_resource type="Script" uid="uid://cvc7v1ky4t0vo" path="res://score.gd" id="2_e7rdd"]
+[ext_resource type="Script" uid="uid://hoclkx3oasg2" path="res://shop_item.gd" id="4_fgaav"]
+
+[sub_resource type="Gradient" id="Gradient_1bvp3"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_blqjs"]
+gradient = SubResource("Gradient_1bvp3")
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+colors = PackedColorArray(0, 0.43137255, 0, 1, 0, 0.6862745, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ig7tw"]
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fgaav"]
+noise = SubResource("FastNoiseLite_ig7tw")
+color_ramp = SubResource("Gradient_h2yge")
+seamless = true
+
+[node name="Node2D" type="Node" unique_id=1037492305]
+script = ExtResource("1_blqjs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1077129720]
+
+[node name="Score" type="Label" parent="CanvasLayer" unique_id=316207712]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.05
+anchor_bottom = 0.95
+offset_top = -45.0
+offset_right = 85.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Score"
+script = ExtResource("2_e7rdd")
+
+[node name="Button" type="Button" parent="." unique_id=371833871]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -47.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=932020179]
+visible = false
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.011
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.672
+offset_top = -757.0
+offset_right = 1060.1494
+offset_bottom = 843.0
+grow_horizontal = 2
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_blqjs")
+script = ExtResource("1_viryw")
+
+[node name="Control" type="Control" parent="." unique_id=406634626]
+z_index = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control" unique_id=502306915]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.0
+anchor_top = 0.5
+anchor_right = -5.0
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -15.5
+offset_right = 54.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+0.1 Cooldown"
+script = ExtResource("4_fgaav")
+metadata/item_number = 0
+metadata/cost = 2
+
+[node name="Label" type="Label" parent="Control/Button" unique_id=954589252]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 2.0
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "2 Score"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Button" unique_id=174136211]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = -0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Current: "
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Control" unique_id=1183494271]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -15.5
+offset_right = 54.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+1 Crosshair"
+script = ExtResource("4_fgaav")
+metadata/item_number = 1
+metadata/cost = 5
+
+[node name="Label" type="Label" parent="Control/Button2" unique_id=1590193679]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 2.0
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "5 Score"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Button2" unique_id=181296295]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = -0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Current: "
+horizontal_alignment = 1
+
+[node name="Button3" type="Button" parent="Control" unique_id=697856643]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 6.0
+anchor_top = 0.5
+anchor_right = 6.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+0.1 Score Mult"
+script = ExtResource("4_fgaav")
+metadata/item_number = 0
+metadata/cost = 10
+
+[node name="Label" type="Label" parent="Control/Button3" unique_id=1807063453]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 2.0
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10 Score"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Button3" unique_id=121219912]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = -0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Current: "
+horizontal_alignment = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=432938541]
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(4, 2)
+repeat_times = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1349886909]
+texture = SubResource("NoiseTexture2D_fgaav")
+
+[connection signal="button_down" from="Button" to="." method="_on_back"]

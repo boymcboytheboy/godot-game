@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://7t6wmibfnv4v"]
+
+[ext_resource type="Script" uid="uid://djsv6r6umjj6" path="res://targets.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cvc7v1ky4t0vo" path="res://score.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dli3icft1bb5" path="res://fade.gd" id="3_h2yge"]
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+colors = PackedColorArray(0, 0.43137255, 0.74509805, 1, 0.7906239, 0.9354526, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ig7tw"]
+noise = SubResource("FastNoiseLite_1bvp3")
+color_ramp = SubResource("Gradient_h2yge")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_lquwl"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h2yge"]
+gradient = SubResource("Gradient_lquwl")
+
+[node name="Node2D" type="Node" unique_id=592053187]
+script = ExtResource("1_ig7tw")
+
+[node name="targets" type="Node2D" parent="." unique_id=724671346]
+z_index = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1669170910]
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(16, 8)
+repeat_times = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1543872355]
+texture = SubResource("NoiseTexture2D_ig7tw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1344782779]
+
+[node name="Score" type="Label" parent="CanvasLayer" unique_id=983166242]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.05
+anchor_bottom = 0.95
+offset_top = -45.0
+offset_right = 85.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Score"
+script = ExtResource("2_0xm2m")
+
+[node name="crosshairs" type="Node2D" parent="." unique_id=2093124349]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1495571758]
+visible = false
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.011
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.672
+offset_top = -757.0
+offset_right = 1060.1494
+offset_bottom = 843.0
+grow_horizontal = 2
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_h2yge")
+script = ExtResource("3_h2yge")
+
+[node name="Button" type="Button" parent="." unique_id=1209161467]
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Shop"
+
+[connection signal="button_down" from="Button" to="." method="_on_shop"]

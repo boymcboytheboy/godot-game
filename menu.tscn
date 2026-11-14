@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bm8bbh046f7py"]
+
+[ext_resource type="Script" uid="uid://dli3icft1bb5" path="res://fade.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://dom40ilo60yfc" path="res://menu.gd" id="1_ouk20"]
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+colors = PackedColorArray(1, 0.47843137, 0.61960787, 1, 1, 0.6869133, 0.75589895, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ouk20"]
+noise = SubResource("FastNoiseLite_1bvp3")
+color_ramp = SubResource("Gradient_h2yge")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_1bvp3"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mae5d"]
+gradient = SubResource("Gradient_1bvp3")
+
+[node name="Node" type="Node" unique_id=800443618]
+script = ExtResource("1_ouk20")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=530849081]
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(32, 2)
+repeat_times = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1103581714]
+texture = SubResource("NoiseTexture2D_ouk20")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=959332401]
+visible = false
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.011
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.672
+offset_top = -757.0
+offset_right = 1060.1494
+offset_bottom = 843.0
+grow_horizontal = 2
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_mae5d")
+script = ExtResource("1_lti8b")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=948878068]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.1
+anchor_right = 0.6
+anchor_bottom = 0.2
+offset_left = -57.5
+offset_right = 57.5
+offset_bottom = 40.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[wave amp=4][font=\"res://GrapeSoda.ttf\"][font_size=64]Target Game"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=652693864]
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Begin"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
