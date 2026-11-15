@@ -13,6 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	values = [Global.max_cooldown,Global.crosshairs,Global.score_mult]
 	get_child(1).text = "Current: " + str(values[get_meta("item_number")])
 	position += (target_pos-position)/16

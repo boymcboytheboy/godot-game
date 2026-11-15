@@ -195,7 +195,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "+0.1 Score Mult"
 script = ExtResource("4_fgaav")
-metadata/item_number = 0
+metadata/item_number = 2
 metadata/cost = 10
 
 [node name="Label" type="Label" parent="Control/Button3" unique_id=1807063453]
