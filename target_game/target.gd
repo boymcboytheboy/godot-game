@@ -18,15 +18,21 @@ func _process(delta: float) -> void:
 	position += (Vector2(target_position) - position)/15
 	
 
-
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == MOUSE_BUTTON_LEFT and not clicked:
 			clicked = true
-			$Sprite2D.visible = false
-			$particles.visible = true
-			for child in $particles.get_children():
-				child.emitting = true
-			Global.score += (1*Global.score_mult)
-			await $particles.get_child(0).finished
-			self.queue_free()
+			var near = false
+			for child in get_parent().get_parent().get_node("crosshairs").get_children():
+				if round(position.distance_to(child.position)) < 32:
+					near = true
+			if near:
+				$Sprite2D.visible = false
+				$particles.visible = true
+				for particles in $particles.get_children():
+					particles.emitting = true
+				Global.score += (1*Global.score_mult)
+				await $particles.get_child(0).finished
+				self.queue_free()
+			else:
+				clicked = false
